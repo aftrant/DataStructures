@@ -1,76 +1,57 @@
 class Node(object):
-	def __init__(self, value, left=None, right=None, parent=None):
-		self.value = value
+	def __init__(self, data, left=None, right=None, parent=None):
+		self.data = data
 		self.left = left
 		self.right = right
 		self.parent = parent
-
-	def getValue(self):
-		return self.value
-
-	def getLeftChild(self):
-		return self.left
-
-	def getRightChild(self):
-		return self.right
-
-	def setValue(self, v):
-		self.value = v
-
-	def setLeftChild(self, l):
-		self.left = l
-
-	def setRightChild(self, r):
-		self.right = r
-
 
 class BinarySearchTree(object):
 	def __init__(self, root=None):
 		self.head = None
 
-	def insert(self, value):
-		self._insert(self.head, value) 
+	def insert(self, data):
+		self._insert(self.head, data) 
 
-	def _insert(self, root, value):
+	def _insert(self, root, data):
 		if self.head == None:
-			self.head = Node(value)
-		elif value < root.value:
+			self.head = Node(data)
+		elif data < root.data:
 			if root.left:
-				self._insert(root.left, value)
+				self._insert(root.left, data)
 			else:
-				root.left = Node(value)
+				root.left = Node(data)
 		else:
 			if root.right:
-				self._insert(root.right, value)
+				self._insert(root.right, data)
 			else:
-				root.right = Node(value)
+				root.right = Node(data)
 		return root
 
-	def search(self, value):
-		return self._search(self.head, value)
+	def search(self, data):
+		return self._search(self.head, data)
 
-	def _search(self, node, find_value):
+	def _search(self, node, find_data):
 		if node:
-			if find_value == node.value:
+			if find_data == node.data:
 				return True
-			elif find_value < node.value:
+			elif find_data < node.data:
 				if node.left:
-					return self._search(node.left, find_value)
+					return self._search(node.left, find_data)
 			else:
 				if node.right:
-					return self._search(node.right, find_value)
+					return self._search(node.right, find_data)
 		return False
 
-	def delete(self, value):
-		return self._delete(self.head, value)
+	def delete(self, data):
+		return self._delete(self.head, data)
 
-	def _delete(self, node, del_value):
+	def _delete(self, node, del_data):
 		if node == None:
 			return node
-		elif del_value < node.value:
-			node.left = self._delete(node.left, del_value)
-		elif del_value < node.value:
-			node.right = self._delete(node.right, del_value)
+		elif del_data < node.data:
+			node.left = self._delete(node.left, del_data)
+		elif del_data < node.data:
+			node.right = self._delete(node.right, del_data)
 		else:	
 			if node.left is None and node.right is None:
 				node = None
@@ -107,7 +88,7 @@ class BinarySearchTree(object):
 def preorder(root):
 	if not root:
 		return
-	print root.value
+	print root.data
 	preorder(root.left)
 	preorder(root.right)
 
@@ -115,7 +96,7 @@ def inorder(root):
 	if not root:
 		return
 	inorder(root.left)
-	print root.value
+	print root.data
 	inorder(root.right)
 
 def postorder(root):
@@ -123,7 +104,7 @@ def postorder(root):
 		return
 	postorder(root.left)
 	postorder(root.right)
-	print root.value
+	print root.data
 
 binaryTree = BinarySearchTree()
 binaryTree.insert(5)
