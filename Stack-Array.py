@@ -10,7 +10,8 @@ class Stack():
 		self._stack.pop()
 
 	def peek(self):
-		return self._stack(len(self._stack))
+		if self._stack:
+			return self._stack(len(self._stack)-1)
 
 	def isEmpty(self):
 		return (len(self._stack) == 0)
